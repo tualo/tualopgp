@@ -1,0 +1,21 @@
+{
+    "name": "tualo/tualopgp",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Hoffmann",
+            "email": "thomas.hoffmann@tualo.de"
+        }
+    ],
+    "require": {
+        "singpolyma/openpgp-php": "*",
+        "phpseclib/phpseclib": "*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Tualo\\Office\\TualoPGP\\": "src/"
+        }
+    }
+}
