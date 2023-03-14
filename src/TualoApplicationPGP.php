@@ -1,11 +1,12 @@
 <?php
 namespace Tualo\Office\TualoPGP;
+use phpseclib3\Crypt\RSA;
 
 class TualoApplicationPGP {
     public static function keyGen($keySize,$userID){
 
-        $rsa = new \phpseclib3\Crypt\RSA();
-        $k = $rsa->createKey($keySize);
+
+        $k = RSA::createKey($keySize); // $rsa->createKey($keySize);
         $rsa->loadKey($k['privatekey']);
         
         $nkey = new \OpenPGP_SecretKeyPacket(
