@@ -9,7 +9,6 @@
         }
     ],
     "require": {
-        "singpolyma/openpgp-php": "*",
         "phpseclib/phpseclib": "*"
     },
     "minimum-stability": "dev",
