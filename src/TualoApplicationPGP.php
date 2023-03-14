@@ -6,7 +6,7 @@ use phpseclib3\Crypt\Common\PublicKey;
 use phpseclib3\Crypt\Common\PrivateKey;
 
 class TualoApplicationPGP {
-    public static function keyGen($keySize,$userID){
+    public static function keyGen($keySize,$userID=''){
         $private = RSA::createKey($keySize); // $rsa->createKey($keySize);
         $public = $private->getPublicKey();
         return [
