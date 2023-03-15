@@ -22,7 +22,7 @@ class TualoApplicationPGP {
         }else{
             $public = $key->getPublicKey();
         }
-        $public->encrypt($content);
+        return $public->encrypt($content);
     }
 
     public static function decrypt($keyData,$content){
