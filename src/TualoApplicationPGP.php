@@ -68,7 +68,7 @@ class TualoApplicationPGP {
         return $crc & 0x00ffffff;
     }
  
-    static function unarmor(string $text, string $header = 'PGP PUBLIC KEY BLOCK') {
+    static function unarmor(string $text, string $header = 'MESSAGE') {
         $header = self::header($header);
         $text = str_replace(array("\r\n", "\r"), array("\n", ''), $text);
         if (($pos1 = strpos($text, $header)) !== FALSE &&
