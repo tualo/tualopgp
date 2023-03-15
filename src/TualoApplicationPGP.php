@@ -42,7 +42,7 @@ class TualoApplicationPGP {
         return '-----END ' . strtoupper((string)$marker) . '-----';
     }
 
-    static function enarmor(string $data, string $marker = 'MESSAGE', array $headers = array()) {
+    static function enarmor(string $data, string $marker = 'PGP MESSAGE', array $headers = array()) {
         $text = self::header($marker) . "\n";
         foreach ($headers as $key => $value) {
             $text .= $key . ': ' . (string)$value . "\n";
@@ -68,7 +68,7 @@ class TualoApplicationPGP {
         return $crc & 0x00ffffff;
     }
  
-    static function unarmor(string $text, string $header = 'MESSAGE') {
+    static function unarmor(string $text, string $header = 'PGP MESSAGE') {
         $header = self::header($header);
         $text = str_replace(array("\r\n", "\r"), array("\n", ''), $text);
         if (($pos1 = strpos($text, $header)) !== FALSE &&
