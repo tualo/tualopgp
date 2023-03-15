@@ -15,6 +15,14 @@ class TualoApplicationPGP {
         ];
     }
 
+    public static function sign(string $privatekey,string $message):string {
+        return RSA::load($privatekey)->sign($message);
+    }
+
+    public static function verify(string $publickey,string $message, string $signature):bool {
+        return RSA::load($publickey)->verify($message, $signature);
+    }
+
     public static function encrypt($keyData,$content){
         $key = RSA::load($keyData);
         if ($key instanceof PublicKey){
