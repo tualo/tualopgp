@@ -16,11 +16,11 @@ class TualoApplicationPGP {
     }
 
     public static function sign(string $privatekey,string $message):string {
-        return RSA::load($privatekey)->sign($message);
+        return base64_encode(RSA::load($privatekey)->sign($message));
     }
 
     public static function verify(string $publickey,string $message, string $signature):bool {
-        return RSA::load($publickey)->verify($message, $signature);
+        return RSA::load($publickey)->verify($message,base64_decode( $signature));
     }
 
     public static function encrypt($keyData,$content){
