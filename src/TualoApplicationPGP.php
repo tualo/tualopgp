@@ -34,7 +34,7 @@ class TualoApplicationPGP {
     }
 
     public static function decrypt($keyData,$content){
-        $private = RSA::load($keyData);
+        $private = RSA::load($keyData)->withPadding(RSA::ENCRYPTION_PKCS1);
         if ($private instanceof PrivateKey){
             return $private->decrypt($content);
         }else{
