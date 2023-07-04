@@ -24,7 +24,7 @@ class TualoApplicationPGP {
     }
 
     public static function encrypt($keyData,$content){
-        $key = RSA::load($keyData);
+        $key = RSA::load( str_replace(["\r", "\n", "\r\n"], ' ', $keyData) ); //->withPadding(RSA::ENCRYPTION_PKCS1);
         if ($key instanceof PublicKey){
             $public = $key;
         }else{
@@ -34,7 +34,7 @@ class TualoApplicationPGP {
     }
 
     public static function decrypt($keyData,$content){
-        $private = RSA::load($keyData)->withPadding(RSA::ENCRYPTION_PKCS1);
+        $private = RSA::load($keyData); //->withPadding(RSA::ENCRYPTION_PKCS1);
         if ($private instanceof PrivateKey){
             return $private->decrypt($content);
         }else{
@@ -42,6 +42,7 @@ class TualoApplicationPGP {
         }
         return null;
     }
+
 
     static function header(string $marker) {
         return '-----BEGIN ' . strtoupper((string)$marker) . '-----';
@@ -78,19 +79,22 @@ class TualoApplicationPGP {
  
     static function unarmor(string $text, string $header = 'PGP MESSAGE') {
         $header = self::header($header);
+        $pos1 = strpos($text, $header);
         $text = str_replace(array("\r\n", "\r"), array("\n", ''), $text);
+
         if (($pos1 = strpos($text, $header)) !== FALSE &&
             ($pos1 = strpos($text, "\n\n", $pos1 += strlen($header))) !== FALSE &&
             ($pos2 = strpos($text, "\n=", $pos1 += 2)) !== FALSE) {
             return base64_decode($text = substr($text, $pos1, $pos2 - $pos1));
         }
+        return base64_decode($text);
     }
 
     public static function fingerprint($keyData){
         $private = RSA::load($keyData);
         $fp = [];
         if ($private instanceof PrivateKey){
-            $fp[] = $private->getPublicKey()->getFingerprint();
+            $fp[] = str_replace(':','',strtoupper($private->getPublicKey()->getFingerprint()));
         }
         return $fp;
     }
