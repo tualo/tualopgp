@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "tualo/tualopgp": "^1.0"
+    "phpseclib/phpseclib": "^4.0.3"
   },
   "minimum-stability": "dev",
   "autoload": {
@@ -17,5 +17,5 @@
       "Tualo\\Office\\TualoPGP\\": "src/"
     }
   },
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
