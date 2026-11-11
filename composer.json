@@ -11,7 +11,7 @@
   "require": {
     "phpseclib/phpseclib": "^4.0.3"
   },
-  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Tualo\\Office\\TualoPGP\\": "src/"

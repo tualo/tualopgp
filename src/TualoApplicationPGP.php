@@ -1,9 +1,9 @@
 <?php
 namespace Tualo\Office\TualoPGP;
-use phpseclib3\Crypt\RSA;
+use phpseclib4\Crypt\RSA;
 
-use phpseclib3\Crypt\Common\PublicKey;
-use phpseclib3\Crypt\Common\PrivateKey;
+use phpseclib4\Crypt\Common\PublicKey;
+use phpseclib4\Crypt\Common\PrivateKey;
 
 class TualoApplicationPGP {
     public static function keyGen($keySize,$userID=''){
